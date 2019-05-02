@@ -237,9 +237,9 @@ public class CreativeInventory {
     }
 
     public interface ICreativeInventory{
-        public abstract String name();
-        public abstract int size();
-        public abstract void contents(CreativeInventory inv);
+        String name();
+        int size();
+        void contents(CreativeInventory inv);
     }
 
 }

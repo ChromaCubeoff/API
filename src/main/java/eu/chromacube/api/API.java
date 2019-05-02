@@ -1,11 +1,13 @@
 package eu.chromacube.api;
 
+import eu.chromacube.api.database.redis.REDISConnection;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.logging.Level;
 
 public class API extends JavaPlugin {
 
+    private REDISConnection redisConnection = null;
     private static API api;
     @Override
     public void onEnable() {
@@ -15,6 +17,10 @@ public class API extends JavaPlugin {
         log("#  by ChromaCube start the 02/05/2019           #");
         log("#===============================================#");
 
+
+        redisConnection = new REDISConnection("localhost", "?", 6379, 4);
+        redisConnection.connect();
+
         api = this;
         super.onEnable();
     }
@@ -23,6 +29,8 @@ public class API extends JavaPlugin {
     public void onDisable() {
         super.onDisable();
     }
+
+    public REDISConnection getRedisConnection() { return redisConnection; }
 
     public static API get() { return api; }
     public void log(Level level, String msg) { this.getLogger().log(level, msg); }

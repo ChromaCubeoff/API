@@ -42,10 +42,10 @@ public class API extends JavaPlugin {
 
 
     private void initConnection() {
-            String user = "";
-            String password = "";
-            String host = "";
-            String database = "";
+            String user = "chroma";
+            String password = "ReWQi954x";
+            String host = "localhost";
+            String database = "chromacube";
         try {
             BasicDataSource connectionPool = new BasicDataSource();
             connectionPool.setDriverClassName("com.mysql.jdbc.Driver");

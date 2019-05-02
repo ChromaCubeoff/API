@@ -18,7 +18,7 @@ public class API extends JavaPlugin {
         log("#===============================================#");
 
 
-        redisConnection = new REDISConnection("localhost", "?", 6379, 4);
+        redisConnection = new REDISConnection("localhost", "8LgH2Yd8u", 6379, 4);
         redisConnection.connect();
 
         api = this;

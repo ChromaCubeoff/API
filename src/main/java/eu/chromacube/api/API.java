@@ -1,13 +1,17 @@
 package eu.chromacube.api;
 
+import eu.chromacube.api.database.mysql.SQLConnection;
 import eu.chromacube.api.database.redis.REDISConnection;
+import org.apache.commons.dbcp2.BasicDataSource;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.logging.Level;
 
 public class API extends JavaPlugin {
 
-    private REDISConnection redisConnection = null;
+    private SQLConnection sql;
+    private REDISConnection redisConnection;
+
     private static API api;
     @Override
     public void onEnable() {
@@ -24,16 +28,38 @@ public class API extends JavaPlugin {
         api = this;
         super.onEnable();
     }
-
     @Override
     public void onDisable() {
         super.onDisable();
     }
 
-    public REDISConnection getRedisConnection() { return redisConnection; }
 
+    public REDISConnection getRedisConnection() { return redisConnection; }
+    public SQLConnection getMySQL() {return sql;}
     public static API get() { return api; }
     public void log(Level level, String msg) { this.getLogger().log(level, msg); }
     public void log(String msg) { this.getLogger().info(msg); }
+
+
+    private void initConnection() {
+            String user = "";
+            String password = "";
+            String host = "";
+            String database = "";
+        try {
+            BasicDataSource connectionPool = new BasicDataSource();
+            connectionPool.setDriverClassName("com.mysql.jdbc.Driver");
+            connectionPool.setUsername(user);
+            connectionPool.setPassword(password);
+            connectionPool.setUrl("jdbc:mysql://"+host+":3306/"+database+"?autoReconnect=true");
+            connectionPool.setInitialSize(1);
+            connectionPool.setMaxTotal(10);
+            sql = new SQLConnection(connectionPool);
+            log("[MySQL] connected");
+        } catch (Exception e) {
+            log("[MySQL] failure");
+            e.printStackTrace();
+        }
+    }
 
 }

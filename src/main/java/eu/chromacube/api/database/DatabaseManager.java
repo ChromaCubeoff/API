@@ -1,6 +1,7 @@
 package eu.chromacube.api.database;
 
 import eu.chromacube.api.API;
+import eu.chromacube.api.database.redis.REDISConnection;
 
 public class DatabaseManager {
 
@@ -11,6 +12,6 @@ public class DatabaseManager {
     }
 
     public void init(){
-
+        new REDISConnection("localhost", "?", )
     }
 }

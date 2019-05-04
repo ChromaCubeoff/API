@@ -15,6 +15,7 @@ public class API extends JavaPlugin {
     private REDISConnection redisConnection;
 
     private static API api;
+    private CreativeInventory creativeInventory;
     @Override
     public void onEnable() {
         api = this;
@@ -28,13 +29,18 @@ public class API extends JavaPlugin {
         redisConnection = new REDISConnection("localhost", "8LgH2Yd8u", 6379, 4);
         redisConnection.connect();
 
-        new CreativeInventory(this).init();
+        creativeInventory = new CreativeInventory(this);
+        creativeInventory.init();
         new CreativeItem(this).init();
         super.onEnable();
     }
     @Override
     public void onDisable() {
         super.onDisable();
+    }
+
+    public void registerMenu(CreativeInventory.ICreativeInventory iCreativeInventory) {
+        
     }
 
 

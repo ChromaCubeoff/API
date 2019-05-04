@@ -2,6 +2,7 @@ package eu.chromacube.api;
 
 import eu.chromacube.api.database.mysql.SQLConnection;
 import eu.chromacube.api.database.redis.REDISConnection;
+import eu.chromacube.api.tools.CreativeInventory;
 import org.apache.commons.dbcp2.BasicDataSource;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -15,6 +16,7 @@ public class API extends JavaPlugin {
     private static API api;
     @Override
     public void onEnable() {
+        api = this;
         log("#==========[WELCOME TO CHROMACUBE API]==========#");
         log("#  ChromaAPI is now loading. Please read        #");
         log("#  carefully all outputs coming from it.        #");
@@ -25,7 +27,8 @@ public class API extends JavaPlugin {
         redisConnection = new REDISConnection("localhost", "8LgH2Yd8u", 6379, 4);
         redisConnection.connect();
 
-        api = this;
+        new CreativeInventory(this).init();
+
         super.onEnable();
     }
     @Override

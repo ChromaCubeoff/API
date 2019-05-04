@@ -1,10 +1,20 @@
 package eu.chromacube.api.tools;
 
-import org.bukkit.Material;
+import org.bukkit.*;
+import org.bukkit.enchantments.Enchantment;
+import org.bukkit.event.EventHandler;
+import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerInteractEvent;
+import org.bukkit.event.server.PluginDisableEvent;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.ItemMeta;
+import org.bukkit.inventory.meta.LeatherArmorMeta;
+import org.bukkit.inventory.meta.SkullMeta;
+import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import java.lang.reflect.Field;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Consumer;
@@ -15,7 +25,7 @@ import java.util.function.Consumer;
  * github: @RealAlphaDEV
  * 04/03/2019
  */
-public class CreativeItems {
+public class CreativeItem {
 
     private ItemStack is;
     private JavaPlugin javaPlugin;
@@ -97,13 +107,6 @@ public class CreativeItems {
         return this;
     }
 
-    public CreativeItem setColor(DyeColor color) {
-        if (is.getType() != Material.WOOL && is.getType() != Material.STAINED_GLASS_PANE && is.getType() != Material.STAINED_GLASS && is.getType() != Material.CLAY)
-            return this;
-        this.is.setDurability(color.getData());
-        return this;
-    }
-
     public CreativeItem setLeatherArmorColor(Color color) {
         try {
             LeatherArmorMeta im = (LeatherArmorMeta) is.getItemMeta();
@@ -115,7 +118,7 @@ public class CreativeItems {
     }
 
 
-    public CreativeItem setCustomHead(String name) {
+    /**public CreativeItem setCustomHead(String name) {
         ItemMeta headM = this.is.getItemMeta();
         try {
             Field field = headM.getClass().getDeclaredField("profile");
@@ -131,7 +134,7 @@ public class CreativeItems {
         }
         this.is.setItemMeta(headM);
         return this;
-    }
+    }**/
 
     public CreativeItem setAction(Consumer<PlayerInteractEvent> consumer){
         creativeitem.put(is, consumer);

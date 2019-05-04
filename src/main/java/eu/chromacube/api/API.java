@@ -3,6 +3,7 @@ package eu.chromacube.api;
 import eu.chromacube.api.database.mysql.SQLConnection;
 import eu.chromacube.api.database.redis.REDISConnection;
 import eu.chromacube.api.tools.CreativeInventory;
+import eu.chromacube.api.tools.CreativeItem;
 import org.apache.commons.dbcp2.BasicDataSource;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -28,7 +29,7 @@ public class API extends JavaPlugin {
         redisConnection.connect();
 
         new CreativeInventory(this).init();
-
+        new CreativeItem(this).init();
         super.onEnable();
     }
     @Override

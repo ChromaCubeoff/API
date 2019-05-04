@@ -40,7 +40,7 @@ public class API extends JavaPlugin {
     }
 
     public void registerMenu(CreativeInventory.ICreativeInventory iCreativeInventory) {
-        
+        creativeInventory.registerMenu(iCreativeInventory);
     }
 
 

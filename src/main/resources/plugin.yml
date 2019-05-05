@@ -1,4 +1,4 @@
-name: ChromaAPI
-version: 1.0
+name: API
+version: 1.0.0
 author: _RealAlpha_
-main: eu.chromecube.api.API
+main: eu.chromacube.api.API
